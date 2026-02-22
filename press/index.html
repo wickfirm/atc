@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insightful Reads | Around the Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --emerald: #00FF00;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #444;
+      --gray-light: #888;
+      --gray-muted: #555;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+    }
+    .nav-logo-img { height: 36px; width: auto; }
+    .nav-back {
+      color: var(--emerald); text-decoration: none; font-size: 13px;
+      letter-spacing: 2px; transition: opacity 0.3s ease;
+    }
+    .nav-back:hover { opacity: 0.7; }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 160px 48px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--gray-dark);
+      margin-bottom: 80px;
+    }
+    .page-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--emerald); margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(48px, 8vw, 100px);
+      letter-spacing: 4px; line-height: 0.95;
+      margin-bottom: 24px;
+    }
+    .page-subtitle {
+      font-size: 16px; font-weight: 300;
+      color: var(--gray-light); max-width: 500px; line-height: 1.7;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      max-width: 1400px;
+      margin: 0 auto 64px;
+      padding: 0 48px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--gray-mid);
+      color: var(--gray-light);
+      padding: 8px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--emerald);
+      color: var(--emerald);
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .article-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #1a1a1a;
+      padding: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--emerald);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .article-card:hover { background: rgba(0,255,0,0.02); border-color: #333; }
+    .article-card:hover::before { transform: scaleX(1); }
+
+    .card-category {
+      display: inline-block;
+      padding: 6px 12px;
+      background: var(--emerald);
+      color: var(--black);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .card-date {
+      font-size: 12px;
+      color: var(--emerald);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .card-title {
+      font-size: 26px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      transition: color 0.3s ease;
+    }
+    .article-card:hover .card-title { color: var(--emerald); }
+    .card-excerpt {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .card-read-more {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--emerald);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s ease;
+    }
+    .article-card:hover .card-read-more { gap: 14px; }
+
+    /* Featured first article (full width) */
+    .article-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 64px;
+    }
+    .article-card.featured .card-title {
+      font-size: clamp(32px, 4vw, 56px);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 48px;
+      border-top: 1px solid var(--gray-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-copy { font-size: 13px; color: var(--gray-muted); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
+      .article-card.featured { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .filter-bar { padding: 0 24px; }
+      .articles-grid { grid-template-columns: 1fr; padding: 0 24px 80px; }
+      .article-card.featured { padding: 32px; }
+      .article-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <img src="../atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </nav>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <p class="page-label">AHEAD OF THE CURVE</p>
+    <h1 class="page-title">INSIGHTFUL<br>READS</h1>
+    <p class="page-subtitle">Go with us beyond the news. Discover strategic foresight grounded in market reality.</p>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterArticles('all', this)">ALL</button>
+    <button class="filter-btn" onclick="filterArticles('Agency News', this)">AGENCY NEWS</button>
+    <button class="filter-btn" onclick="filterArticles('Awards', this)">AWARDS</button>
+    <button class="filter-btn" onclick="filterArticles('Partnership', this)">PARTNERSHIP</button>
+    <button class="filter-btn" onclick="filterArticles('Events', this)">EVENTS</button>
+    <button class="filter-btn" onclick="filterArticles('Thought Leadership', this)">THOUGHT LEADERSHIP</button>
+  </div>
+
+  <!-- Articles Grid -->
+  <div class="articles-grid" id="articles-grid">
+
+    <!-- Featured: Latest article -->
+    <a href="atc-beirut-office.html" class="article-card featured" data-category="Agency News">
+      <div>
+        <span class="card-category">Agency News</span>
+        <p class="card-date">February 16, 2026</p>
+        <h2 class="card-title">AROUNDTHECLOCK EXPANDS REGIONAL FOOTPRINT WITH BEIRUT OFFICE LAUNCH</h2>
+      </div>
+      <div>
+        <p class="card-excerpt">ATC completes a strategic triangle between Dubai, Abu Dhabi, and Beirut — positioning Lebanon as the agency's creative and innovation hub for the region. The Beirut operation brings together more than twenty communications specialists across client partnership, creative, social and media.</p>
+        <span class="card-read-more">READ ARTICLE →</span>
+      </div>
+    </a>
+
+    <!-- Article 2 -->
+    <a href="atc-rizk-chairman.html" class="article-card" data-category="Agency News">
+      <span class="card-category">Agency News</span>
+      <p class="card-date">January 2025</p>
+      <h3 class="card-title">AROUNDTHECLOCK APPOINTS RIZK NAIFEH AS CHAIRMAN</h3>
+      <p class="card-excerpt">The Board of Directors appoints co-founder Rizk Naifeh as Chairman after over 6 years of successful tenure as CEO, as ATC eyes further regional expansion.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+    <!-- Article 3 -->
+    <a href="atc-iftar-abu-dhabi.html" class="article-card" data-category="Events">
+      <span class="card-category">Events</span>
+      <p class="card-date">March 19, 2025</p>
+      <h3 class="card-title">AROUNDTHECLOCK HONORS CLIENTS AT IFTAR IN ABU DHABI</h3>
+      <p class="card-excerpt">ATC gathers clients from Dubai and Abu Dhabi at the Emirates Palace Mandarin Oriental to celebrate partnerships and the spirit of Ramadan.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+    <!-- Article 4 -->
+    <a href="atc-awards-2024.html" class="article-card" data-category="Awards">
+      <span class="card-category">Awards</span>
+      <p class="card-date">December 17, 2024</p>
+      <h3 class="card-title">AROUNDTHECLOCK WRAPS 2024 WITH 3 MENA DIGITAL AWARDS</h3>
+      <p class="card-excerpt">ATC wins two Golds and a Silver at the MENA Digital Awards 2024, competing against the region's most powerful agencies across six categories.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+    <!-- Article 5 -->
+    <a href="atc-abu-dhabi-office.html" class="article-card" data-category="Agency News">
+      <span class="card-category">Agency News</span>
+      <p class="card-date">October 2024</p>
+      <h3 class="card-title">AROUNDTHECLOCK OPENS NEW OFFICES IN ABU DHABI</h3>
+      <p class="card-excerpt">After six years in Dubai, ATC opens a third office in Masdar City — the world's most sustainable urban district — as part of its UAE expansion.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+    <!-- Article 6 -->
+    <a href="atc-mbc-agreement.html" class="article-card" data-category="Partnership">
+      <span class="card-category">Partnership</span>
+      <p class="card-date">June 6, 2023</p>
+      <h3 class="card-title">AROUNDTHECLOCK AND MBC GROUP SIGN STRATEGIC MEDIA AGREEMENT</h3>
+      <p class="card-excerpt">MBC Group, MENA's largest media group, appoints ATC as strategic media partner for its Dream App and FlashWin across the MENA region.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+    <!-- Article 7 -->
+    <a href="atc-4-years.html" class="article-card" data-category="Thought Leadership">
+      <span class="card-category">Thought Leadership</span>
+      <p class="card-date">September 1, 2022</p>
+      <h3 class="card-title">ATC: PLAYING WITH THE BIG BOYS</h3>
+      <p class="card-excerpt">Four years in, ATC has grown from a small media agency to a multinational team of 35+ professionals — tireless, fearless, and playing on the biggest stage.</p>
+      <span class="card-read-more">READ ARTICLE →</span>
+    </a>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="footer-copy">© 2026 Around the Clock. All Rights Reserved.</p>
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </div>
+
+  <script>
+    function filterArticles(category, btn) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide cards
+      document.querySelectorAll('.article-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

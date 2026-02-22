@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORA Development | Case Study | Around the Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #000; --white: #fff; --emerald: #00FF00; --gray-dark: #1a1a1a; --gray-light: #888; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent); }
+    .nav-logo-img { height: 36px; width: auto; }
+    .nav-back { color: var(--emerald); text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: opacity 0.3s; }
+    .nav-back:hover { opacity: 0.7; }
+
+    .case-hero {
+      height: 70vh; position: relative; display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .case-hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .case-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.4) 100%);
+    }
+    .case-hero-content { position: relative; z-index: 2; padding: 64px 48px; width: 100%; }
+    .case-tag { display: inline-block; padding: 6px 14px; background: var(--emerald); color: var(--black); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .case-title { font-size: clamp(48px, 8vw, 100px); letter-spacing: 4px; line-height: 0.95; }
+    .case-subtitle { font-size: 16px; color: var(--gray-light); margin-top: 16px; letter-spacing: 1px; }
+
+    .case-body { max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-bottom: 80px;
+    }
+    .stat-box {
+      background: var(--gray-dark); padding: 40px 32px; text-align: center;
+    }
+    .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: var(--emerald); line-height: 1; letter-spacing: 2px; }
+    .stat-label { font-size: 12px; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; margin-top: 8px; }
+
+    .case-section { margin-bottom: 64px; }
+    .case-section h2 { font-size: 32px; letter-spacing: 3px; color: var(--emerald); margin-bottom: 20px; }
+    .case-section p { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.9; font-weight: 300; margin-bottom: 16px; }
+
+    .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; }
+    .media-grid img, .media-grid video { width: 100%; height: 300px; object-fit: cover; }
+    .media-grid video { background: #111; cursor: pointer; }
+
+    .case-footer { max-width: 1200px; margin: 0 auto; padding: 48px 48px 80px; border-top: 1px solid var(--gray-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .back-btn { display: inline-block; background: transparent; border: 1px solid var(--emerald); color: var(--emerald); padding: 14px 32px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-decoration: none; transition: all 0.3s; text-transform: uppercase; }
+    .back-btn:hover { background: var(--emerald); color: var(--black); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .case-hero-content { padding: 40px 24px; }
+      .case-body { padding: 48px 24px 80px; }
+      .stats-row { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <img src="../atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </nav>
+
+  <div class="case-hero">
+    <img src="../files/Case Studies/Social Media/ORA/ORASTATIC.jpg" alt="ORA Development">
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-content">
+      <span class="case-tag">Social Media · Real Estate</span>
+      <h1 class="case-title">ORA DEVELOPMENT</h1>
+      <p class="case-subtitle">Building a digital presence as bold as the brand itself.</p>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">↑3X</div>
+        <div class="stat-label">Engagement Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">2M+</div>
+        <div class="stat-label">Total Reach</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Months of Campaign</div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>THE CHALLENGE</h2>
+      <p>ORA Development needed to establish a premium digital footprint in a competitive real estate market, communicating luxury lifestyle and investment value to a discerning regional and international audience.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>OUR APPROACH</h2>
+      <p>ATC developed a full social media strategy combining high-end visual content, CGI reels, and influencer partnerships to position ORA as the definitive luxury real estate brand in the region. From scripted reels to static storytelling, every piece of content was engineered to convert aspirational interest into qualified leads.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>THE WORK</h2>
+      <div class="media-grid">
+        <img src="../files/Case Studies/Social Media/ORA/ORASTATIC.jpg" alt="ORA Static">
+        <img src="../files/Case Studies/Social Media/ORA/ORASTATIC2.jpg" alt="ORA Static 2">
+        <video src="../files/Case Studies/Social Media/ORA/ORACGI.mp4" controls></video>
+        <video src="../files/Case Studies/Social Media/ORA/ORA YVIEWS REEL.mp4" controls></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-footer">
+    <a href="/case-studies" class="back-btn">← ALL CASE STUDIES</a>
+    <a href="/homepage-v2" class="back-btn">HOME</a>
+  </div>
+</body>
+</html>

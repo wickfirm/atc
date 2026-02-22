@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies | Around the Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #000; --white: #fff; --emerald: #00FF00; --gray-dark: #1a1a1a; --gray-mid: #444; --gray-light: #888; --gray-muted: #555; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent); }
+    .nav-logo-img { height: 36px; width: auto; }
+    .nav-back { color: var(--emerald); text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: opacity 0.3s; }
+    .nav-back:hover { opacity: 0.7; }
+
+    .page-hero { padding: 160px 48px 80px; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid var(--gray-dark); margin-bottom: 80px; }
+    .page-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--emerald); margin-bottom: 16px; }
+    .page-title { font-size: clamp(48px, 8vw, 100px); letter-spacing: 4px; line-height: 0.95; margin-bottom: 24px; }
+    .page-subtitle { font-size: 16px; font-weight: 300; color: var(--gray-light); max-width: 500px; line-height: 1.7; }
+
+    .filter-bar { max-width: 1400px; margin: 0 auto 64px; padding: 0 48px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .filter-btn { background: transparent; border: 1px solid var(--gray-mid); color: var(--gray-light); padding: 8px 20px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--emerald); color: var(--emerald); }
+
+    /* Grid */
+    .cases-grid { max-width: 1400px; margin: 0 auto; padding: 0 48px 120px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+    .case-card { display: block; text-decoration: none; color: inherit; position: relative; overflow: hidden; aspect-ratio: 1; }
+    .case-card img, .case-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .case-card:hover img, .case-card:hover video { transform: scale(1.05); }
+    .case-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); transition: background 0.3s; }
+    .case-card:hover .case-card-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%); }
+    .case-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px; }
+    .case-card-tag { display: inline-block; padding: 5px 12px; background: var(--emerald); color: var(--black); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+    .case-card-title { font-size: 28px; letter-spacing: 2px; line-height: 1; margin-bottom: 6px; transition: color 0.3s; }
+    .case-card:hover .case-card-title { color: var(--emerald); }
+    .case-card-sub { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
+    .case-card-arrow { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.3s; }
+    .case-card:hover .case-card-arrow { opacity: 1; border-color: var(--emerald); }
+    .case-card-arrow svg { width: 16px; height: 16px; color: var(--emerald); }
+
+    /* Featured card — spans 2 cols */
+    .case-card.featured { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* COP28 special — no photo bg */
+    .case-card.no-photo { background: #0a1a0a; }
+    .case-card.no-photo .case-card-bg-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .case-card.no-photo .case-card-bg-logo img { width: 200px; opacity: 0.15; object-fit: contain; }
+
+    .footer-bar { max-width: 1400px; margin: 0 auto; padding: 48px; border-top: 1px solid var(--gray-dark); display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 13px; color: var(--gray-muted); }
+
+    @media (max-width: 1024px) { .cases-grid { grid-template-columns: repeat(2, 1fr); } .case-card.featured { grid-column: span 2; } }
+    @media (max-width: 768px) { .nav { padding: 16px 24px; } .page-hero { padding: 120px 24px 60px; } .filter-bar { padding: 0 24px; } .cases-grid { grid-template-columns: 1fr; padding: 0 24px 80px; } .case-card.featured { grid-column: span 1; aspect-ratio: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <img src="../atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </nav>
+
+  <div class="page-hero">
+    <p class="page-label">Proven Results</p>
+    <h1 class="page-title">CASE<br>STUDIES</h1>
+    <p class="page-subtitle">Complex challenges. Real solutions. No noise. Just impact.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCases('all', this)">ALL</button>
+    <button class="filter-btn" onclick="filterCases('Social Media', this)">SOCIAL MEDIA</button>
+    <button class="filter-btn" onclick="filterCases('Influencer', this)">INFLUENCER</button>
+    <button class="filter-btn" onclick="filterCases('Events', this)">EVENTS</button>
+    <button class="filter-btn" onclick="filterCases('Sustainability', this)">SUSTAINABILITY</button>
+    <button class="filter-btn" onclick="filterCases('Media', this)">MEDIA</button>
+  </div>
+
+  <div class="cases-grid" id="cases-grid">
+
+    <!-- ORA — Featured -->
+    <a href="/case-studies/ora" class="case-card featured" data-category="Social Media">
+      <img src="../files/Case Studies/Social Media/ORA/ORASTATIC.jpg" alt="ORA Development">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Social Media · Real Estate</span>
+        <h2 class="case-card-title">ORA DEVELOPMENT</h2>
+        <p class="case-card-sub">Building a digital presence as bold as the brand itself.</p>
+      </div>
+    </a>
+
+    <!-- CHERY -->
+    <a href="/case-studies/chery" class="case-card" data-category="Social Media">
+      <img src="../files/Case Studies/Social Media/CHERY/SnapInsta.to_586674242_18381796375144148_1559821491185878891_n.jpg" alt="Chery UAE">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Social Media · Automotive</span>
+        <h2 class="case-card-title">CHERY UAE</h2>
+        <p class="case-card-sub">Driving engagement in a competitive market.</p>
+      </div>
+    </a>
+
+    <!-- BAHLSEN -->
+    <a href="/case-studies/bahlsen" class="case-card" data-category="Influencer">
+      <img src="../files/Case Studies/Social Media/BAHLSEN/influencer bahlsen.png" alt="Bahlsen">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Influencer · FMCG</span>
+        <h2 class="case-card-title">BAHLSEN</h2>
+        <p class="case-card-sub">Turning a heritage brand into a social-first favourite.</p>
+      </div>
+    </a>
+
+    <!-- RDH -->
+    <a href="/case-studies/rdh" class="case-card" data-category="Social Media">
+      <img src="../files/Case Studies/Social Media/RDH/RDH3.jpg" alt="RDH">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Social Media · Lifestyle</span>
+        <h2 class="case-card-title">RDH</h2>
+        <p class="case-card-sub">Crafting a lifestyle narrative that moves people.</p>
+      </div>
+    </a>
+
+    <!-- FIA -->
+    <a href="/case-studies/fia" class="case-card" data-category="Events">
+      <video autoplay muted loop playsinline>
+        <source src="../files/Case Studies/Social Media/FIA/FIA DAY1.mp4" type="video/mp4">
+      </video>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Events · Motorsport</span>
+        <h2 class="case-card-title">FIA</h2>
+        <p class="case-card-sub">Real-time coverage for the world's premier motorsport body.</p>
+      </div>
+    </a>
+
+    <!-- COP28 -->
+    <a href="/case-studies/cop28" class="case-card no-photo" data-category="Sustainability">
+      <div class="case-card-bg-logo"><img src="../files/Client Logos/COP 28.png" alt="COP28"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Social Media · Sustainability</span>
+        <h2 class="case-card-title">COP28</h2>
+        <p class="case-card-sub">Amplifying the world's most important climate conversation.</p>
+      </div>
+    </a>
+
+    <!-- MASDAR — Media Featured -->
+    <a href="/case-studies/media-masdar" class="case-card featured" data-category="Media">
+      <img src="../files/Case Studies/Media/Masdar/masdar-hero.jpg" alt="Masdar Global Campaign">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Media · Sustainability</span>
+        <h2 class="case-card-title">MASDAR</h2>
+        <p class="case-card-sub">383M+ impressions across 10 global markets for a landmark rebrand.</p>
+      </div>
+    </a>
+
+    <!-- COP28 Media -->
+    <a href="/case-studies/media-cop28" class="case-card no-photo" data-category="Media">
+      <div class="case-card-bg-logo"><img src="../files/Client Logos/COP 28.png" alt="COP28"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Media · Sustainability</span>
+        <h2 class="case-card-title">COP28</h2>
+        <p class="case-card-sub">298M+ impressions. 11% above planned. Nationwide awareness to drive Green Zone visits.</p>
+      </div>
+    </a>
+
+    <!-- RDH Media -->
+    <a href="/case-studies/media-rdh" class="case-card" data-category="Media">
+      <img src="../files/Case Studies/Social Media/RDH/RDH3.jpg" alt="RDH">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Media · Real Estate</span>
+        <h2 class="case-card-title">RDH</h2>
+        <p class="case-card-sub">156M+ impressions. 15% above industry benchmark engagement.</p>
+      </div>
+    </a>
+
+    <!-- SCZone -->
+    <a href="/case-studies/media-sczone" class="case-card" data-category="Media">
+      <img src="../files/Case Studies/Media/SCZone/sczone-hero.jpg" alt="SCZone">
+      <div class="case-card-overlay"></div>
+      <div class="case-card-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+      <div class="case-card-content">
+        <span class="case-card-tag">Media · Energy</span>
+        <h2 class="case-card-title">SCZONE</h2>
+        <p class="case-card-sub">COP27 presence across 6 international airports and global TV networks.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer-bar">
+    <p class="footer-copy">© 2026 Around the Clock. All Rights Reserved.</p>
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </div>
+
+  <script>
+    function filterCases(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.case-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

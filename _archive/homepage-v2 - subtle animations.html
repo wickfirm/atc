@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Around the Clock | Integrated Communications Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --emerald: #00FF00;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #444;
+      --gray-light: #888;
+      --gray-muted: #555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .fade-in-1 { animation-delay: 0.1s; }
+    .fade-in-2 { animation-delay: 0.3s; }
+    .fade-in-3 { animation-delay: 0.5s; }
+    .fade-in-4 { animation-delay: 0.7s; }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+    }
+
+    .nav-logo-img {
+      height: 146px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--emerald);
+    }
+
+    /* Buttons */
+    .cta-btn {
+      background: transparent;
+      border: 1px solid var(--emerald);
+      color: var(--emerald);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn:hover {
+      background: var(--emerald);
+      color: var(--black);
+    }
+
+    .cta-btn-sm {
+      padding: 10px 24px;
+      font-size: 13px;
+    }
+
+    .cta-btn-filled {
+      background: var(--emerald);
+      border: 1px solid var(--emerald);
+      color: var(--black);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn-filled:hover {
+      background: transparent;
+      color: var(--emerald);
+    }
+
+    .cta-btn-black {
+      background: var(--black);
+      border: none;
+      color: var(--white);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn-black:hover {
+      background: #222;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+      opacity: 0.3;
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--emerald);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 6vw, 72px);
+      letter-spacing: 4px;
+    }
+
+    /* ========================================
+       SECTION 1: HERO — Video Background
+       ======================================== */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.6) 0%,
+        rgba(0,0,0,0.55) 30%,
+        rgba(0,0,0,0.55) 70%,
+        rgba(0,0,0,0.88) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--emerald);
+      margin-bottom: 24px;
+      text-shadow: 0 1px 16px rgba(0,0,0,0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 12vw, 140px);
+      letter-spacing: 8px;
+      line-height: 0.95;
+      margin-bottom: 32px;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.6);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      text-shadow: 0 1px 20px rgba(0,0,0,0.9);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .scroll-indicator { display: none; }
+    }
+
+    .scroll-text {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.9);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--emerald), transparent);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ========================================
+       SECTION 2: CASE STUDIES (Highlighted Work)
+       ======================================== */
+    .section {
+      padding: 120px 48px;
+      background: var(--black);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .section-header-center {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header-center .section-title {
+      margin-bottom: 16px;
+    }
+
+    .section-underline {
+      width: 80px;
+      height: 3px;
+      background: var(--emerald);
+      margin: 0 auto 24px;
+    }
+
+    .section-subtitle {
+      color: var(--gray-light);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .highlighted-work-slider {
+      padding: 0 60px;
+      position: relative;
+    }
+
+    .project-slide {
+      padding: 0 20px;
+    }
+
+    .project-circle-wrapper {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--emerald);
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+
+    .project-circle-wrapper:hover {
+      border-color: var(--emerald);
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    }
+
+    .project-circle-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-circle-wrapper:hover img {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+      transition: opacity 0.3s ease;
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 24px 25%;
+      text-align: center;
+    }
+
+    .project-category {
+      color: var(--emerald);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .project-client {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+    }
+
+    /* Slider Navigation */
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--emerald);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .slider-nav:hover {
+      background: #00cc00;
+    }
+
+    .slider-nav svg {
+      width: 24px;
+      height: 24px;
+      color: var(--black);
+    }
+
+    .slider-prev {
+      left: 0;
+    }
+
+    .slider-next {
+      right: 0;
+    }
+
+    .work-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    /* ========================================
+       SECTION 3: DIVISIONS
+       ======================================== */
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-bottom: 56px;
+    }
+
+    .division-card {
+      border: 1px solid #222;
+      padding: 36px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+      transition: border-color 0.35s ease, background 0.35s ease;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .division-card:hover {
+      border-color: var(--emerald);
+      background: rgba(0,255,0,0.04);
+    }
+
+    .division-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+      /* placeholder box — replaced by client icon */
+      border: 1px solid rgba(0,255,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--emerald);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      transition: border-color 0.3s;
+    }
+
+    .division-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .division-card:hover .division-icon {
+      border-color: var(--emerald);
+    }
+
+    .division-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 14px;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+
+    .division-card:hover .division-name {
+      color: var(--emerald);
+    }
+
+    /* Default paragraph + hover services list */
+    .division-body {
+      position: relative;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* desc sits in normal flow — gives the card its natural height */
+    .division-desc {
+      font-size: 12px;
+      line-height: 1.75;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* services list overlays on top, filling the whole body area */
+    .division-services {
+      font-size: 12px;
+      line-height: 1.7;
+      font-weight: 300;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      color: rgba(255,255,255,0.85);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .division-services li {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 11.5px;
+      letter-spacing: 0.2px;
+    }
+
+    .division-services li:last-child {
+      border-bottom: none;
+    }
+
+    .division-sub {
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      color: var(--emerald);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 0;
+      border: none;
+    }
+
+    .division-card:hover .division-desc {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+
+    .division-card:hover .division-services {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .divisions-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      .divisions-grid { grid-template-columns: repeat(2, 1fr); }
+      .division-card { min-height: 320px; padding: 28px 20px 24px; }
+    }
+
+    /* ========================================
+       SECTION 4: CLIENTS & PARTNERS
+       ======================================== */
+    .clients-section {
+      padding: 120px 0;
+      overflow: hidden;
+    }
+
+    .logo-slider {
+      overflow: hidden;
+      background: transparent;
+      padding: 40px 0;
+      position: relative;
+    }
+
+    .logo-slider::before,
+    .logo-slider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 200px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .logo-slider::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.95) 0%, transparent 100%);
+    }
+
+    .logo-slider::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(0,0,0,0.95) 0%, transparent 100%);
+    }
+
+    .logo-track {
+      display: flex;
+      gap: 80px;
+      width: max-content;
+      animation: scroll 30s linear infinite;
+      align-items: center;
+    }
+
+    .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo-item:hover {
+      opacity: 1;
+    }
+
+    .logo-item img {
+      height: 50px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+    }
+
+    .clients-cta {
+      text-align: center;
+      margin-top: 64px;
+      padding: 0 48px;
+    }
+
+    /* ========================================
+       SECTION 5: INSIGHTS
+       ======================================== */
+    .insights-slider {
+      position: relative;
+      padding: 0 60px;
+    }
+
+    .insight-slide {
+      padding: 0 12px;
+    }
+
+    .news-card {
+      border: 1px solid #222;
+      padding: 32px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 280px;
+    }
+
+    .news-card:hover {
+      border-color: var(--emerald);
+      background: rgba(0, 255, 0, 0.02);
+    }
+
+    .news-category-inline {
+      display: inline-block;
+      padding: 8px 14px;
+      background: var(--emerald);
+      color: var(--black);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 20px;
+      align-self: flex-start;
+    }
+
+    .news-date {
+      font-size: 12px;
+      color: var(--emerald);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .news-title {
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .news-card:hover .news-title {
+      color: var(--emerald);
+    }
+
+    .news-excerpt {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* Insights slider nav */
+    .insights-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .insights-nav:hover {
+      background: var(--emerald);
+    }
+
+    .insights-nav:hover svg {
+      color: var(--black);
+    }
+
+    .insights-nav svg {
+      width: 20px;
+      height: 20px;
+      color: var(--white);
+      transition: color 0.3s ease;
+    }
+
+    .insights-prev {
+      left: 0;
+    }
+
+    .insights-next {
+      right: 0;
+    }
+
+    /* ========================================
+       SECTION 6: WHY WORK WITH US
+       ======================================== */
+    .why-section {
+      background: var(--emerald);
+      color: var(--black);
+      padding: 120px 48px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .why-rotating-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-rotating-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 32px;
+    }
+
+    .why-rotating-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 9vw, 110px);
+      line-height: 1;
+      letter-spacing: 4px;
+      color: var(--black);
+      position: relative;
+      height: 2.4em;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-phrase {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .why-phrase.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .why-phrase.exit {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+
+    .why-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .why-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .why-dot.active {
+      background: var(--black);
+      transform: scale(1.4);
+    }
+
+    .why-cta {
+      margin-top: 48px;
+    }
+
+    /* ========================================
+       SECTION 7: FOOTER
+       ======================================== */
+    .footer {
+      padding: 80px 48px 32px;
+      background: var(--black);
+      border-top: 1px solid var(--gray-dark);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-bottom: 64px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-logo-img {
+      height: 128px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: var(--black);
+    }
+
+    .footer-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      color: var(--gray-muted);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--emerald);
+    }
+
+    .footer-links svg {
+      width: 14px;
+      height: 14px;
+      color: var(--emerald);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: transparent;
+      border: 1px solid #333;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--emerald);
+    }
+
+    .newsletter-input::placeholder {
+      color: #555;
+    }
+
+    .newsletter-btn {
+      background: var(--emerald);
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--black);
+      transition: opacity 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      opacity: 0.8;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-dark);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--gray-muted);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal-link {
+      font-size: 13px;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .footer-legal-link:hover {
+      color: var(--emerald);
+    }
+
+    /* ========================================
+       RESPONSIVE STYLES
+       ======================================== */
+    @media (max-width: 1024px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 80px 24px;
+      }
+
+      .hero-title {
+        font-size: clamp(40px, 15vw, 80px);
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .why-section {
+        padding: 80px 24px;
+      }
+
+      .footer {
+        padding: 60px 24px 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .clients-section {
+        padding: 80px 0;
+      }
+
+      .slider-nav {
+        width: 40px;
+        height: 40px;
+      }
+
+      .slider-nav svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Slick overrides */
+    .slick-slide {
+      outline: none;
+    }
+
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
+    /* ========================================
+       ANIMATION LAYER
+       ======================================== */
+
+    /* Grain overlay */
+    .grain-overlay {
+      position: fixed;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 0.4s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%,100% { transform: translate(0,0); }
+      10%     { transform: translate(-2%,-3%); }
+      20%     { transform: translate(2%,3%); }
+      30%     { transform: translate(-3%,1%); }
+      40%     { transform: translate(1%,-2%); }
+      50%     { transform: translate(-1%,2%); }
+      60%     { transform: translate(3%,-1%); }
+      70%     { transform: translate(-2%,3%); }
+      80%     { transform: translate(2%,-3%); }
+      90%     { transform: translate(-1%,1%); }
+    }
+
+    /* Custom cursor */
+    @media (pointer: fine) {
+      body, a, button,
+      .division-card, .news-card,
+      .project-circle-wrapper, .logo-item,
+      .nav-link, .why-dot { cursor: none !important; }
+    }
+    .c-cursor {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .c-cursor__dot {
+      width: 6px; height: 6px;
+      background: var(--emerald);
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+    }
+    .c-cursor__ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(0,255,0,0.45);
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      transition: width 0.35s cubic-bezier(0.16,1,0.3,1),
+                  height 0.35s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.35s ease;
+    }
+    .c-cursor.is-hovering .c-cursor__ring {
+      width: 60px; height: 60px;
+      border-color: rgba(0,255,0,0.9);
+    }
+    .c-cursor.is-clicking .c-cursor__dot {
+      transform: translate(-50%,-50%) scale(2);
+    }
+
+    /* Scroll reveal */
+    .sr {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sr.in { opacity: 1; transform: translateY(0); }
+
+    /* Section underline line-reveal */
+    .sr-line {
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s;
+    }
+    .sr-line.in { transform: scaleX(1); }
+
+    /* Hero char reveal */
+    .hero-char-wrap {
+      display: inline-block;
+      overflow: hidden;
+      line-height: 0.95;
+    }
+    .hero-char {
+      display: inline-block;
+      transform: translateY(105%);
+      animation: charUp 1s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes charUp { to { transform: translateY(0); } }
+
+    /* Nav shrink on scroll */
+    .nav { transition: padding 0.4s ease, background 0.4s ease, border 0.4s ease; }
+    .nav.scrolled {
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+      background: rgba(0,0,0,0.95) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Magnetic & tilt perf hints */
+    .cta-btn, .cta-btn-filled, .cta-btn-black,
+    .division-card { will-change: transform; }
+    .division-card { transform-style: preserve-3d; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .sr { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .sr-line { transform: scaleX(1) !important; transition: none !important; }
+      .hero-char { transform: none !important; animation: none !important; }
+      .grain-overlay { display: none; }
+      .c-cursor { display: none; }
+      body { cursor: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="files/Fw_ ATC Website - Logo & Icons/ATC-Logo.png" alt="Around the Clock" class="nav-logo-img">
+    </div>
+    <div class="nav-links">
+      <a class="nav-link">OUR EDGE</a>
+      <a class="nav-link">THE WORK</a>
+      <a class="nav-link">INSIGHTS</a>
+      <a class="nav-link">CAREERS</a>
+      <button class="cta-btn cta-btn-sm">LET'S TALK</button>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: Hero — Video Background -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="files/Showreel_Around the clocK_UPDATED FEB,17 026-V4.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <p class="hero-tagline fade-in fade-in-1">The Agency in Motion</p>
+      <h1 class="hero-title fade-in fade-in-2">AROUND<br>THE CLOCK</h1>
+      <p class="hero-subtitle fade-in fade-in-3">
+        Communications, engineered as one system.<br>Built to move brands forward.
+      </p>
+      <button class="cta-btn fade-in fade-in-4">DIVE IN</button>
+    </div>
+
+  </section>
+
+  <!-- SECTION 2: Case Studies -->
+  <section class="section" style="display:none;">
+    <div class="container">
+      <div class="section-header-center">
+        <p class="section-label">Proven Results</p>
+        <h2 class="section-title">CASE STUDIES</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">Complex challenges. Real solutions. No noise. Just impact.</p>
+      </div>
+
+      <div class="highlighted-work-slider">
+        <button class="slider-nav slider-prev" onclick="$('.work-carousel').slick('slickPrev')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div class="work-carousel">
+
+          <!-- ORA -->
+          <div class="project-slide">
+            <a href="/case-studies/ora" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="files/Case Studies/Social Media/ORA/ORASTATIC.jpg" alt="ORA Development">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Social Media</span>
+                <h3 class="project-title">ORA DEVELOPMENT</h3>
+                <span class="project-client">Real Estate</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <!-- CHERY -->
+          <div class="project-slide">
+            <a href="/case-studies/chery" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="files/Case Studies/Social Media/CHERY/SnapInsta.to_586674242_18381796375144148_1559821491185878891_n.jpg" alt="Chery UAE">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Social Media</span>
+                <h3 class="project-title">CHERY UAE</h3>
+                <span class="project-client">Automotive</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <!-- BAHLSEN -->
+          <div class="project-slide">
+            <a href="/case-studies/bahlsen" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="files/Case Studies/Social Media/BAHLSEN/influencer bahlsen.png" alt="Bahlsen">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Influencer</span>
+                <h3 class="project-title">BAHLSEN</h3>
+                <span class="project-client">FMCG</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <!-- COP28 -->
+          <div class="project-slide">
+            <a href="/case-studies/cop28" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="files/Client Logos/COP 28.png" alt="COP28" style="object-fit:contain;background:#111;padding:20%;">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Social Media</span>
+                <h3 class="project-title">COP28</h3>
+                <span class="project-client">Sustainability</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <!-- FIA -->
+          <div class="project-slide">
+            <a href="/case-studies/fia" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600" alt="FIA">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Events</span>
+                <h3 class="project-title">FIA</h3>
+                <span class="project-client">Motorsport</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <!-- RDH -->
+          <div class="project-slide">
+            <a href="/case-studies/rdh" style="text-decoration:none;color:inherit;display:block;">
+            <div class="project-circle-wrapper">
+              <img src="files/Case Studies/Social Media/RDH/RDH3.jpg" alt="RDH">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Social Media</span>
+                <h3 class="project-title">RDH</h3>
+                <span class="project-client">Lifestyle</span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+        </div>
+
+        <button class="slider-nav slider-next" onclick="$('.work-carousel').slick('slickNext')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="work-cta">
+        <a href="/case-studies" class="cta-btn" style="text-decoration:none;display:inline-block;">CHECK MORE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Divisions -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <p class="section-label">Systems thinking. Market impact.</p>
+        <h2 class="section-title">OUR DIVISIONS</h2>
+      </div>
+
+      <div class="divisions-grid">
+
+        <!-- GLYPH -->
+        <div class="division-card">
+          <div class="division-icon" style="border:none;">
+            <img src="files/Icons/GLYPH.png" alt="Glyph" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <span class="division-name">GLYPH</span>
+          <div class="division-body">
+            <p class="division-desc">We build visual impact from scratch. By conceptualizing, designing, and materializing brand thinking into systems, surfaces, and stories, we craft brands that can live anywhere.</p>
+            <ul class="division-services">
+              <li><span class="division-sub">Ideas, made visible</span></li>
+              <li>Brand Positioning & Tone of Voice</li>
+              <li>Brand Identity & Visual Language</li>
+              <li>Brand Architecture & Narratives</li>
+              <li>Creative Concept Development</li>
+              <li>Creative Strategy</li>
+              <li>Campaign Ideas</li>
+              <li>Art Direction & Design</li>
+              <li>Copywriting & Storytelling</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- PULSE -->
+        <div class="division-card">
+          <div class="division-icon" style="border:none;">
+            <img src="files/Icons/PULSE.png" alt="Pulse" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <span class="division-name">PULSE</span>
+          <div class="division-body">
+            <p class="division-desc">We operate the feed. Always-on thinking, platform-native creativity, and culture-aware execution that listens, adapts, and moves in real time.</p>
+            <ul class="division-services">
+              <li><span class="division-sub">The Social Factory</span></li>
+              <li>Social Strategy & Brand Positioning</li>
+              <li>Always-On Content Planning</li>
+              <li>Creative Direction for Social</li>
+              <li>Content Creation & Production</li>
+              <li>Community Management</li>
+              <li>Influencer Strategy & Management</li>
+              <li>Social Listening & Insights</li>
+              <li>Performance Reporting & Optimization</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- AXIS -->
+        <div class="division-card">
+          <div class="division-icon" style="border:none;">
+            <img src="files/Icons/AXIS.png" alt="Axis" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <span class="division-name">AXIS</span>
+          <div class="division-body">
+            <p class="division-desc">The media engine built to identify the right signals and turn them into measurable growth. We sit at the intersection of strategy, data, and execution, translating insight into impact across every channel that matters.</p>
+            <ul class="division-services">
+              <li><span class="division-sub">Integrated Media Engine</span></li>
+              <li>Campaign Planning</li>
+              <li>Audience Persona Creation</li>
+              <li>Retargeting Strategies</li>
+              <li>Media Buying</li>
+              <li>Data & Analytics</li>
+              <li>Media Strategy</li>
+              <li>Performance Marketing</li>
+              <li>Lead Generation & Awareness</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ECHOES -->
+        <div class="division-card">
+          <div class="division-icon" style="border:none;">
+            <img src="files/Icons/ECHOES.png" alt="Echoes" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <span class="division-name">ECHOES</span>
+          <div class="division-body">
+            <p class="division-desc">From strategic narrative to physical presence, we design intentional and unforgettable experiences that resonate long after the lights go down.</p>
+            <ul class="division-services">
+              <li><span class="division-sub">Public Moments that Travel</span></li>
+              <li>Public Relations Strategy</li>
+              <li>Media Relations</li>
+              <li>Events Planning & Execution</li>
+              <li>Branding & Special Executions</li>
+              <li>Activations</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- STACK -->
+        <div class="division-card">
+          <div class="division-icon" style="border:none;">
+            <img src="files/Icons/STACK.png" alt="Stack" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <span class="division-name">STACK</span>
+          <div class="division-body">
+            <p class="division-desc">We turn strategy into momentum. Audience intelligence, performance media, and data-driven planning geared to scale awareness and convert intent.</p>
+            <ul class="division-services">
+              <li><span class="division-sub">The Web Lab</span></li>
+              <li>AI Tools</li>
+              <li>Dashboard Creation</li>
+              <li>Website Design</li>
+              <li>Website Development & Maintenance</li>
+              <li>SEO</li>
+              <li>AEO</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center">
+        <a href="#" class="cta-btn" style="text-decoration:none;display:inline-block;">LEARN MORE</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 4: Our Clients -->
+  <section class="clients-section">
+    <div class="container" style="padding: 0 48px;">
+      <div class="section-header-center">
+        <p class="section-label">Partnerships in motion. Growth in action.</p>
+        <h2 class="section-title">OUR CLIENTS</h2>
+      </div>
+    </div>
+
+    <div class="logo-slider">
+      <div class="logo-track" id="logo-track">
+        <!-- First set -->
+        <div class="logo-item"><img src="logos/abu%20dhabi%20logo.png" alt="Abu Dhabi"></div>
+        <div class="logo-item"><img src="logos/adnec%20logo.png" alt="ADNEC"></div>
+        <div class="logo-item"><img src="logos/bahlsen-logo-leibniz-keks-bahlsen.png" alt="Bahlsen"></div>
+        <div class="logo-item"><img src="logos/bloom%20logo.png" alt="Bloom"></div>
+        <div class="logo-item"><img src="logos/bos.png" alt="BOS"></div>
+        <div class="logo-item"><img src="logos/chery.png" alt="Chery"></div>
+        <div class="logo-item"><img src="logos/cop28-logo.png" alt="COP28"></div>
+        <div class="logo-item"><img src="logos/DLD%20Logo%20-%20white.png" alt="DLD"></div>
+        <div class="logo-item"><img src="logos/Galadari-Dual-Language-Dark.png" alt="Galadari"></div>
+        <div class="logo-item"><img src="logos/Masdar%20Logo.png" alt="Masdar"></div>
+        <div class="logo-item"><img src="logos/naboodah%20Logo.png" alt="Al Naboodah"></div>
+        <div class="logo-item"><img src="logos/Novo%20Nordisk%20Logo.png" alt="Novo Nordisk"></div>
+        <div class="logo-item"><img src="logos/optimum-nutrition9401.png" alt="Optimum Nutrition"></div>
+        <div class="logo-item"><img src="logos/ORA%20LOGOS-01.png" alt="ORA"></div>
+        <div class="logo-item"><img src="logos/storck-lgo.net.png" alt="Storck"></div>
+        <div class="logo-item"><img src="logos/Tecom%20logo.png" alt="Tecom"></div>
+        <div class="logo-item"><img src="logos/logo-unilever-premium-vector-PNG%20(2).png" alt="Unilever"></div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="logo-item"><img src="logos/abu%20dhabi%20logo.png" alt="Abu Dhabi"></div>
+        <div class="logo-item"><img src="logos/adnec%20logo.png" alt="ADNEC"></div>
+        <div class="logo-item"><img src="logos/bahlsen-logo-leibniz-keks-bahlsen.png" alt="Bahlsen"></div>
+        <div class="logo-item"><img src="logos/bloom%20logo.png" alt="Bloom"></div>
+        <div class="logo-item"><img src="logos/bos.png" alt="BOS"></div>
+        <div class="logo-item"><img src="logos/chery.png" alt="Chery"></div>
+        <div class="logo-item"><img src="logos/cop28-logo.png" alt="COP28"></div>
+        <div class="logo-item"><img src="logos/DLD%20Logo%20-%20white.png" alt="DLD"></div>
+        <div class="logo-item"><img src="logos/Galadari-Dual-Language-Dark.png" alt="Galadari"></div>
+        <div class="logo-item"><img src="logos/Masdar%20Logo.png" alt="Masdar"></div>
+        <div class="logo-item"><img src="logos/naboodah%20Logo.png" alt="Al Naboodah"></div>
+        <div class="logo-item"><img src="logos/Novo%20Nordisk%20Logo.png" alt="Novo Nordisk"></div>
+        <div class="logo-item"><img src="logos/optimum-nutrition9401.png" alt="Optimum Nutrition"></div>
+        <div class="logo-item"><img src="logos/ORA%20LOGOS-01.png" alt="ORA"></div>
+        <div class="logo-item"><img src="logos/storck-lgo.net.png" alt="Storck"></div>
+        <div class="logo-item"><img src="logos/Tecom%20logo.png" alt="Tecom"></div>
+        <div class="logo-item"><img src="logos/logo-unilever-premium-vector-PNG%20(2).png" alt="Unilever"></div>
+      </div>
+    </div>
+
+    <div class="clients-cta">
+      <button class="cta-btn">JOIN THE MOVEMENT</button>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 5: Insightful Reads -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <p class="section-label">AHEAD OF THE CURVE</p>
+        <h2 class="section-title">INSIGHTFUL READS</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">Go with us beyond the news.<br>Discover strategic foresight grounded in market reality.</p>
+      </div>
+
+      <div class="insights-slider">
+        <button class="insights-nav insights-prev" onclick="$('.insights-carousel').slick('slickPrev')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div class="insights-carousel">
+          <div class="insight-slide">
+            <a href="press/atc-beirut-office.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Agency News</span>
+                <p class="news-date">February 16, 2026</p>
+                <h3 class="news-title">AROUNDTHECLOCK EXPANDS REGIONAL FOOTPRINT WITH BEIRUT OFFICE LAUNCH</h3>
+                <p class="news-excerpt">ATC completes a strategic triangle between Dubai, Abu Dhabi, and Beirut — positioning Lebanon as the agency's creative and innovation hub for the region.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-rizk-chairman.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Agency News</span>
+                <p class="news-date">January 2025</p>
+                <h3 class="news-title">AROUNDTHECLOCK APPOINTS RIZK NAIFEH AS CHAIRMAN</h3>
+                <p class="news-excerpt">The Board of Directors appoints co-founder Rizk Naifeh as Chairman after over 6 years of successful tenure as CEO, as ATC eyes further regional expansion.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-iftar-abu-dhabi.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Events</span>
+                <p class="news-date">March 19, 2025</p>
+                <h3 class="news-title">AROUNDTHECLOCK HONORS CLIENTS AT IFTAR IN ABU DHABI</h3>
+                <p class="news-excerpt">ATC gathers clients from Dubai and Abu Dhabi at the Emirates Palace Mandarin Oriental to celebrate partnerships and the spirit of Ramadan.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-awards-2024.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Awards</span>
+                <p class="news-date">December 17, 2024</p>
+                <h3 class="news-title">AROUNDTHECLOCK WRAPS 2024 WITH 3 MENA DIGITAL AWARDS</h3>
+                <p class="news-excerpt">ATC wins two Golds and a Silver at the MENA Digital Awards 2024, competing against the region's most powerful agencies across six categories.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-abu-dhabi-office.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Agency News</span>
+                <p class="news-date">October 2024</p>
+                <h3 class="news-title">AROUNDTHECLOCK OPENS NEW OFFICES IN ABU DHABI</h3>
+                <p class="news-excerpt">After six years in Dubai, ATC opens a third office in Masdar City — the world's most sustainable urban district — as part of its UAE expansion.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-mbc-agreement.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Partnership</span>
+                <p class="news-date">June 6, 2023</p>
+                <h3 class="news-title">AROUNDTHECLOCK AND MBC GROUP SIGN STRATEGIC MEDIA AGREEMENT</h3>
+                <p class="news-excerpt">MBC Group, MENA's largest media group, appoints ATC as strategic media partner for its Dream App and FlashWin across the MENA region.</p>
+              </article>
+            </a>
+          </div>
+
+          <div class="insight-slide">
+            <a href="press/atc-4-years.html" style="text-decoration:none;color:inherit;display:block;height:100%;">
+              <article class="news-card">
+                <span class="news-category-inline">Thought Leadership</span>
+                <p class="news-date">September 1, 2022</p>
+                <h3 class="news-title">ATC: PLAYING WITH THE BIG BOYS</h3>
+                <p class="news-excerpt">Four years in, ATC has grown from a small media agency to a multinational team of 35+ professionals — tireless, fearless, and playing on the biggest stage.</p>
+              </article>
+            </a>
+          </div>
+        </div>
+
+        <button class="insights-nav insights-next" onclick="$('.insights-carousel').slick('slickNext')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="text-center" style="margin-top: 48px;">
+        <a href="press/index.html" class="cta-btn" style="text-decoration:none;display:inline-block;">READ ON</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 6: Rotating Banner -->
+  <section class="why-section">
+    <div class="why-rotating-wrapper">
+      <p class="why-rotating-label">What we stand for</p>
+
+      <div class="why-rotating-text" id="why-rotating-text">
+        <span class="why-phrase active">ONE SYSTEM. ZERO SILOS.</span>
+        <span class="why-phrase">BUILT TO MOVE.</span>
+        <span class="why-phrase">INTEGRATED BY NATURE. TAILORED BY DESIGN.</span>
+        <span class="why-phrase">STRATEGY IN SYNC.</span>
+        <span class="why-phrase">MARKET-READY.</span>
+        <span class="why-phrase">ENGINEERED GROWTH.</span>
+        <span class="why-phrase">FULL-SPECTRUM THINKING.</span>
+        <span class="why-phrase">LOCAL DEPTH. GLOBAL REACH.</span>
+        <span class="why-phrase">SCALE ACROSS BORDERS.</span>
+        <span class="why-phrase">SUSTAINABLE ADVANTAGE.</span>
+        <span class="why-phrase">ALIGNED FOR IMPACT.</span>
+        <span class="why-phrase">SHARED MOMENTUM.</span>
+      </div>
+
+      <div class="why-dots" id="why-dots"></div>
+
+      <div class="why-cta">
+        <button class="cta-btn-black">LET'S TALK</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <!-- Column 1: Logo -->
+      <div>
+        <img src="files/Fw_ ATC Website - Logo & Icons/ATC-Logo.png" alt="Around the Clock" class="footer-logo-img">
+        <p class="footer-desc">Integrated strategies for the modern digital landscape.</p>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/atccoms?igsh=c3VhazZzZ3BqYmU=" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@atccoms?_r=1&_t=ZS-944o4wUnujt" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/around-the-clock-communications/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <rect x="2" y="2" width="20" height="20" rx="3"/>
+              <path d="M7 10v7"/>
+              <path d="M7 7v.01"/>
+              <path d="M11 17v-4c0-1.5 1-3 3-3s3 1.5 3 3v4"/>
+              <path d="M11 10v7"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/share/1DoCYwPQjn/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h4 class="footer-heading">QUICK LINKS</h4>
+        <ul class="footer-links">
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Offices -->
+      <div>
+        <h4 class="footer-heading">OFFICES</h4>
+        <ul class="footer-links" id="offices-list">
+          <li><a href="#"><i data-lucide="globe"></i> Abu Dhabi</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Dubai</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Lebanon</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> London</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Egypt</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div>
+        <h4 class="footer-heading">STAY AHEAD OF THE CLOCK</h4>
+        <p class="footer-desc">Subscribe to our newsletter for industry insights.</p>
+        <div class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Around the Clock. All Rights Reserved.</p>
+      <div class="footer-legal">
+        <span class="footer-legal-link">Privacy Policy</span>
+        <span class="footer-legal-link">Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ── Rotating banner ──────────────────────────────────────
+    const phrases = document.querySelectorAll('.why-phrase');
+    const dotsContainer = document.getElementById('why-dots');
+    let current = 0;
+    let autoTimer;
+
+    // Build dots
+    phrases.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'why-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+      clearTimeout(autoTimer);
+      phrases[current].classList.remove('active');
+      phrases[current].classList.add('exit');
+      setTimeout(() => phrases[current].classList.remove('exit'), 600);
+
+      dotsContainer.children[current].classList.remove('active');
+
+      current = index;
+      phrases[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+
+      autoTimer = setTimeout(next, 2800);
+    }
+
+    function next() { goTo((current + 1) % phrases.length); }
+
+    // Kick off
+    autoTimer = setTimeout(next, 2800);
+    // ─────────────────────────────────────────────────────────
+
+    // Services section now uses static HTML with custom inline SVG icons
+
+    // Initialize Slick Carousels
+    $(document).ready(function() {
+      // Work carousel
+      $('.work-carousel').slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '0',
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+
+      // Insights carousel
+      $('.insights-carousel').slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    });
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ANIMATION SCRIPTS
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+  (function() {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── Grain overlay ─────────────────────────────────────── */
+    const grain = document.createElement('div');
+    grain.className = 'grain-overlay';
+    document.body.appendChild(grain);
+
+    /* ── Custom cursor ─────────────────────────────────────── */
+    if (matchMedia('(pointer: fine)').matches) {
+      const cur = document.createElement('div');
+      cur.className = 'c-cursor';
+      cur.innerHTML = '<div class="c-cursor__dot"></div><div class="c-cursor__ring"></div>';
+      document.body.appendChild(cur);
+
+      const dot  = cur.querySelector('.c-cursor__dot');
+      const ring = cur.querySelector('.c-cursor__ring');
+      let mx = -200, my = -200, rx = -200, ry = -200;
+
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top  = my + 'px';
+      });
+
+      (function loop() {
+        rx += (mx - rx) * 0.10;
+        ry += (my - ry) * 0.10;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+
+      document.addEventListener('mousedown', () => cur.classList.add('is-clicking'));
+      document.addEventListener('mouseup',   () => cur.classList.remove('is-clicking'));
+
+      document.querySelectorAll(
+        'a, button, .division-card, .news-card, .project-circle-wrapper, .logo-item, .why-dot, .cta-btn, .cta-btn-filled'
+      ).forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('is-hovering'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('is-hovering'));
+      });
+    }
+
+    /* ── Hero title — character split ──────────────────────── */
+    (function() {
+      const title = document.querySelector('.hero-title');
+      if (!title || reduced) return;
+
+      title.classList.remove('fade-in', 'fade-in-2');
+      title.style.opacity = '1';
+
+      const lines = title.innerHTML.split('<br>');
+      let idx = 0;
+      title.innerHTML = lines.map((line, li) =>
+        line.split('').map(c => {
+          if (c === ' ') return '<span style="display:inline-block;width:0.28em"></span>';
+          const delay = (0.45 + idx++ * 0.042 + li * 0.12).toFixed(2);
+          return `<span class="hero-char-wrap"><span class="hero-char" style="animation-delay:${delay}s">${c}</span></span>`;
+        }).join('')
+      ).join('<br>');
+    })();
+
+    /* ── Scroll reveal ─────────────────────────────────────── */
+    (function() {
+      if (reduced) return;
+
+      /* Elements to reveal — exclude anything inside carousels */
+      const targets = document.querySelectorAll(
+        '.section-header-center .section-label,' +
+        '.section-header-center .section-title,' +
+        '.section-header-center .section-subtitle,' +
+        '.division-card,' +
+        '.clients-cta,' +
+        '.logo-slider,' +
+        '.footer-grid > div'
+      );
+
+      targets.forEach(el => {
+        if (el.matches('.division-card')) {
+          const idx = Array.from(el.closest('.divisions-grid').querySelectorAll('.division-card')).indexOf(el);
+          el.style.transitionDelay = (idx * 0.07) + 's';
+        }
+        if (el.matches('.footer-grid > div')) {
+          const idx = Array.from(el.parentElement.children).indexOf(el);
+          el.style.transitionDelay = (idx * 0.1) + 's';
+        }
+        el.classList.add('sr');
+      });
+
+      /* Underlines get line-reveal instead */
+      document.querySelectorAll('.section-underline').forEach(el => el.classList.add('sr-line'));
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.sr, .sr-line').forEach(el => io.observe(el));
+    })();
+
+    /* ── Nav shrink on scroll ──────────────────────────────── */
+    (function() {
+      const nav = document.querySelector('.nav');
+      const update = () => nav.classList.toggle('scrolled', scrollY > 70);
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    /* ── Division cards — 3D tilt ──────────────────────────── */
+    (function() {
+      document.querySelectorAll('.division-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width  - 0.5) *  9;
+          const y = ((e.clientY - r.top)  / r.height - 0.5) * -9;
+          card.style.transition = 'transform 0.1s ease, border-color 0.35s ease, background 0.35s ease';
+          card.style.transform = `perspective(700px) rotateX(${y}deg) rotateY(${x}deg) translateZ(8px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, background 0.35s ease';
+          card.style.transform = '';
+        });
+      });
+    })();
+
+    /* ── Magnetic buttons ──────────────────────────────────── */
+    (function() {
+      document.querySelectorAll('.cta-btn, .cta-btn-filled').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width  / 2) * 0.38;
+          const y = (e.clientY - r.top  - r.height / 2) * 0.38;
+          btn.style.transition = 'transform 0.1s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease';
+          btn.style.transform = `translate(${x}px,${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, color 0.3s ease, border-color 0.3s ease';
+          btn.style.transform = '';
+        });
+      });
+    })();
+
+    /* ── Text scramble on section labels ───────────────────── */
+    (function() {
+      if (reduced) return;
+      const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ·—';
+      function scramble(el) {
+        const target = (el.dataset.orig = el.dataset.orig || el.textContent.toUpperCase());
+        const t0 = performance.now(), dur = 750;
+        (function frame(now) {
+          const p    = Math.min((now - t0) / dur, 1);
+          const done = Math.floor(p * target.length);
+          el.textContent = target.split('').map((c, i) =>
+            (i < done || c === ' ' || c === '.') ? c : CHARS[Math.random() * CHARS.length | 0]
+          ).join('');
+          if (p < 1) requestAnimationFrame(frame);
+        })(performance.now());
+      }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { scramble(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.8 });
+      document.querySelectorAll('.section-label').forEach(el => io.observe(el));
+    })();
+
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDH Media | Case Study | Around the Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #000; --white: #fff; --emerald: #00FF00; --gray-dark: #1a1a1a; --gray-light: #888; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent); }
+    .nav-logo-img { height: 36px; width: auto; }
+    .nav-back { color: var(--emerald); text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: opacity 0.3s; }
+    .nav-back:hover { opacity: 0.7; }
+
+    .case-hero { height: 70vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+    .case-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .case-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.4) 100%); }
+    .case-hero-content { position: relative; z-index: 2; padding: 64px 48px; width: 100%; }
+    .case-tag { display: inline-block; padding: 6px 14px; background: var(--emerald); color: var(--black); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .case-title { font-size: clamp(48px, 8vw, 100px); letter-spacing: 4px; line-height: 0.95; }
+    .case-subtitle { font-size: 16px; color: var(--gray-light); margin-top: 16px; letter-spacing: 1px; max-width: 600px; line-height: 1.7; }
+
+    .case-body { max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 80px; }
+    .stat-box { background: var(--gray-dark); padding: 40px 24px; text-align: center; }
+    .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--emerald); line-height: 1; letter-spacing: 2px; }
+    .stat-label { font-size: 11px; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; margin-top: 8px; }
+
+    .benchmark-box { background: #0a1a0a; border: 1px solid rgba(0,255,0,0.25); padding: 32px; margin-bottom: 80px; display: flex; align-items: center; gap: 24px; }
+    .benchmark-icon { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--emerald); line-height: 1; flex-shrink: 0; }
+    .benchmark-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--emerald); margin-bottom: 6px; }
+    .benchmark-text p { font-size: 15px; color: rgba(255,255,255,0.7); font-weight: 300; }
+
+    .case-section { margin-bottom: 64px; }
+    .case-section h2 { font-size: 32px; letter-spacing: 3px; color: var(--emerald); margin-bottom: 20px; }
+    .case-section p { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.9; font-weight: 300; margin-bottom: 16px; }
+
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
+    .pillar-box { background: var(--gray-dark); padding: 32px; }
+    .pillar-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--white); margin-bottom: 10px; }
+    .pillar-box p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.8; font-weight: 300; }
+
+    .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 32px; }
+    .meta-box { background: var(--gray-dark); padding: 24px 32px; }
+    .meta-label { font-size: 10px; letter-spacing: 3px; color: var(--emerald); text-transform: uppercase; margin-bottom: 8px; }
+    .meta-value { font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 300; }
+
+    .case-footer { max-width: 1200px; margin: 0 auto; padding: 48px 48px 80px; border-top: 1px solid var(--gray-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .back-btn { display: inline-block; background: transparent; border: 1px solid var(--emerald); color: var(--emerald); padding: 14px 32px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-decoration: none; transition: all 0.3s; text-transform: uppercase; }
+    .back-btn:hover { background: var(--emerald); color: var(--black); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .case-hero-content { padding: 40px 24px; }
+      .case-body { padding: 48px 24px 80px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid, .meta-row { grid-template-columns: 1fr; }
+      .benchmark-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <img src="../atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </nav>
+
+  <div class="case-hero">
+    <img src="../files/Case Studies/Social Media/RDH/RDH3.jpg" alt="RDH">
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-content">
+      <span class="case-tag">Integrated Media · Real Estate</span>
+      <h1 class="case-title">RDH</h1>
+      <p class="case-subtitle">Launching RDH as a new entity in the UAE market through a multi-platform media campaign built on storytelling and precision targeting.</p>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">156M+</div>
+        <div class="stat-label">Impressions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">12.2M</div>
+        <div class="stat-label">Views</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">600K</div>
+        <div class="stat-label">Clicks</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">2.19%</div>
+        <div class="stat-label">Engagement Rate</div>
+      </div>
+    </div>
+
+    <div class="benchmark-box">
+      <div class="benchmark-icon">↑15%</div>
+      <div class="benchmark-text">
+        <h3>Above Industry Benchmarks</h3>
+        <p>A 2.19% engagement rate — 15% higher than industry benchmarks — across a brand-new entity with zero prior digital presence.</p>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>THE CHALLENGE</h2>
+      <p>RDH needed to be launched from scratch — introducing its vision, mission, and unique value proposition to a competitive UAE real estate market while simultaneously generating qualified leads across three international markets.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>OUR APPROACH</h2>
+      <div class="pillars-grid">
+        <div class="pillar-box">
+          <h3>Pre-Launch Buzz</h3>
+          <p>Teaser content and anticipation-building assets deployed before launch to create intrigue and prime target audiences for the brand reveal.</p>
+        </div>
+        <div class="pillar-box">
+          <h3>Multi-Platform Rollout</h3>
+          <p>Scaled awareness through a coordinated rollout combining storytelling, audience targeting, and localised creative across digital and social platforms.</p>
+        </div>
+        <div class="pillar-box">
+          <h3>Precision Targeting</h3>
+          <p>Geo-targeted affluent areas to improve lead quality, focusing on users aged 28–60 with interests in property, home design, and life transition moments.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>CAMPAIGN DETAILS</h2>
+      <div class="meta-row">
+        <div class="meta-box">
+          <div class="meta-label">Target Audience</div>
+          <div class="meta-value">Ages 28–60 · Property & home design interests · Geo-targeted affluent areas</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Markets</div>
+          <div class="meta-value">UAE · UK · South Africa</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="case-footer">
+    <a href="/case-studies" class="back-btn">← ALL CASE STUDIES</a>
+    <a href="/homepage-v2" class="back-btn">HOME</a>
+  </div>
+</body>
+</html>

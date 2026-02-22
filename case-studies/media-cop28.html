@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COP28 Media | Case Study | Around the Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #000; --white: #fff; --emerald: #00FF00; --gray-dark: #1a1a1a; --gray-light: #888; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent); }
+    .nav-logo-img { height: 36px; width: auto; }
+    .nav-back { color: var(--emerald); text-decoration: none; font-size: 13px; letter-spacing: 2px; transition: opacity 0.3s; }
+    .nav-back:hover { opacity: 0.7; }
+
+    /* Hero — logo on dark bg since no photo provided yet */
+    .case-hero { height: 70vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; background: #060f06; }
+    .case-hero-bg-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .case-hero-bg-logo img { width: 320px; opacity: 0.12; object-fit: contain; }
+    .case-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.4) 100%); }
+    .case-hero-content { position: relative; z-index: 2; padding: 64px 48px; width: 100%; }
+    .case-tag { display: inline-block; padding: 6px 14px; background: var(--emerald); color: var(--black); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .case-title { font-size: clamp(48px, 8vw, 100px); letter-spacing: 4px; line-height: 0.95; }
+    .case-subtitle { font-size: 16px; color: var(--gray-light); margin-top: 16px; letter-spacing: 1px; max-width: 600px; line-height: 1.7; }
+
+    .case-body { max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; margin-bottom: 80px; }
+    .stat-box { background: var(--gray-dark); padding: 40px 24px; text-align: center; }
+    .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--emerald); line-height: 1; letter-spacing: 2px; }
+    .stat-label { font-size: 11px; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; margin-top: 8px; }
+
+    /* Success callout */
+    .success-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 80px; }
+    .success-box { background: #0a1a0a; border: 1px solid rgba(0,255,0,0.2); padding: 32px; display: flex; align-items: flex-start; gap: 16px; }
+    .success-icon { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--emerald); line-height: 1; flex-shrink: 0; }
+    .success-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--emerald); margin-bottom: 6px; }
+    .success-text p { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+
+    .case-section { margin-bottom: 64px; }
+    .case-section h2 { font-size: 32px; letter-spacing: 3px; color: var(--emerald); margin-bottom: 20px; }
+    .case-section p { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.9; font-weight: 300; margin-bottom: 16px; }
+
+    /* Pillars */
+    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 32px; }
+    .pillar-box { background: var(--gray-dark); padding: 32px; }
+    .pillar-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--white); margin-bottom: 10px; }
+    .pillar-box p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.8; font-weight: 300; }
+
+    /* Target */
+    .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 32px; }
+    .meta-box { background: var(--gray-dark); padding: 24px 32px; }
+    .meta-label { font-size: 10px; letter-spacing: 3px; color: var(--emerald); text-transform: uppercase; margin-bottom: 8px; }
+    .meta-value { font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 300; }
+
+    .case-footer { max-width: 1200px; margin: 0 auto; padding: 48px 48px 80px; border-top: 1px solid var(--gray-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .back-btn { display: inline-block; background: transparent; border: 1px solid var(--emerald); color: var(--emerald); padding: 14px 32px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-decoration: none; transition: all 0.3s; text-transform: uppercase; }
+    .back-btn:hover { background: var(--emerald); color: var(--black); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 24px; }
+      .case-hero-content { padding: 40px 24px; }
+      .case-body { padding: 48px 24px 80px; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .success-row, .pillars-grid, .meta-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <img src="../atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    <a href="/homepage-v2" class="nav-back">← BACK TO HOME</a>
+  </nav>
+
+  <div class="case-hero">
+    <div class="case-hero-bg-logo"><img src="../files/Client Logos/COP 28.png" alt="COP28"></div>
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-content">
+      <span class="case-tag">Integrated Media · Sustainability</span>
+      <h1 class="case-title">COP28</h1>
+      <p class="case-subtitle">Driving nationwide awareness and Green Zone visitation through coordinated physical and digital touchpoints.</p>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">298M+</div>
+        <div class="stat-label">Impressions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">15.2M</div>
+        <div class="stat-label">Reach</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">1.3M</div>
+        <div class="stat-label">Clicks</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">↑11%</div>
+        <div class="stat-label">Above Planned Impressions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">↑8%</div>
+        <div class="stat-label">Above Planned Reach</div>
+      </div>
+    </div>
+
+    <div class="success-row">
+      <div class="success-box">
+        <div class="success-icon">↑11%</div>
+        <div class="success-text">
+          <h3>Impressions Exceeded</h3>
+          <p>Delivered 11% above planned impressions — outperforming benchmarks through smarter placement and timing.</p>
+        </div>
+      </div>
+      <div class="success-box">
+        <div class="success-icon">↑8%</div>
+        <div class="success-text">
+          <h3>Reach Exceeded</h3>
+          <p>Achieved 8% above planned reach by maximising geo-targeted digital activity at key conversion zones.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>THE CHALLENGE</h2>
+      <p>COP28 required a campaign that could simultaneously build mass awareness across the UAE and convert that awareness into physical Green Zone visits — all within a compressed activation window around one of the world's most high-profile climate events.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>OUR APPROACH</h2>
+      <div class="pillars-grid">
+        <div class="pillar-box">
+          <h3>Mass Visibility & Credibility</h3>
+          <p>High-impact DOOH placements across Dubai's key arterial routes and business districts to establish scale and legitimacy at a national level.</p>
+        </div>
+        <div class="pillar-box">
+          <h3>Intent Capture & Conversion</h3>
+          <p>Geo-targeted digital activity around Expo Dubai and high-traffic locations to convert awareness into ticket purchases and Green Zone visits.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>CAMPAIGN DETAILS</h2>
+      <div class="meta-row">
+        <div class="meta-box">
+          <div class="meta-label">Target Audience</div>
+          <div class="meta-value">UAE residents and tourists</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Coverage</div>
+          <div class="meta-value">All of UAE + Geo-targeting Expo Dubai parameters</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="case-footer">
+    <a href="/case-studies" class="back-btn">← ALL CASE STUDIES</a>
+    <a href="/homepage-v2" class="back-btn">HOME</a>
+  </div>
+</body>
+</html>

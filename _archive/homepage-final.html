@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Around the Clock | Integrated Communications Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --emerald: #00FF00;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #444;
+      --gray-light: #888;
+      --gray-muted: #555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .fade-in-1 { animation-delay: 0.1s; }
+    .fade-in-2 { animation-delay: 0.3s; }
+    .fade-in-3 { animation-delay: 0.5s; }
+    .fade-in-4 { animation-delay: 0.7s; }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+    }
+
+    .nav-logo-img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--emerald);
+    }
+
+    /* Buttons */
+    .cta-btn {
+      background: transparent;
+      border: 1px solid var(--emerald);
+      color: var(--emerald);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn:hover {
+      background: var(--emerald);
+      color: var(--black);
+    }
+
+    .cta-btn-sm {
+      padding: 10px 24px;
+      font-size: 13px;
+    }
+
+    .cta-btn-filled {
+      background: var(--emerald);
+      border: 1px solid var(--emerald);
+      color: var(--black);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn-filled:hover {
+      background: transparent;
+      color: var(--emerald);
+    }
+
+    .cta-btn-black {
+      background: var(--black);
+      border: none;
+      color: var(--white);
+      padding: 14px 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .cta-btn-black:hover {
+      background: #222;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+      opacity: 0.3;
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--emerald);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 6vw, 72px);
+      letter-spacing: 4px;
+    }
+
+    /* ========================================
+       SECTION 1: HERO (from atc-cyan/v2.html)
+       ======================================== */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(0, 255, 0, 0.02) 0%, transparent 50%),
+        linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+      background-size: 100px 100px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.3) 0%, 
+        rgba(0,0,0,0.1) 30%,
+        rgba(0,0,0,0.1) 70%,
+        rgba(0,0,0,0.8) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--emerald);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 12vw, 140px);
+      letter-spacing: 8px;
+      line-height: 0.95;
+      margin-bottom: 32px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray-light);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-text {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gray-mid);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--emerald), transparent);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ========================================
+       SECTION 2: HIGHLIGHTED WORK (from atc-site)
+       ======================================== */
+    .section {
+      padding: 120px 48px;
+      background: var(--black);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .section-header-center {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header-center .section-title {
+      margin-bottom: 16px;
+    }
+
+    .section-underline {
+      width: 80px;
+      height: 3px;
+      background: var(--emerald);
+      margin: 0 auto 24px;
+    }
+
+    .section-subtitle {
+      color: var(--gray-light);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .highlighted-work-slider {
+      padding: 0 60px;
+      position: relative;
+    }
+
+    .project-slide {
+      padding: 0 20px;
+    }
+
+    .project-circle-wrapper {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--emerald);
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+
+    .project-circle-wrapper:hover {
+      border-color: var(--emerald);
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    }
+
+    .project-circle-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-circle-wrapper:hover img {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+      transition: opacity 0.3s ease;
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 24px 25%;
+      text-align: center;
+    }
+
+    .project-category {
+      color: var(--emerald);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .project-client {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+    }
+
+    /* Slider Navigation */
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--emerald);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .slider-nav:hover {
+      background: #00cc00;
+    }
+
+    .slider-nav svg {
+      width: 24px;
+      height: 24px;
+      color: var(--black);
+    }
+
+    .slider-prev {
+      left: 0;
+    }
+
+    .slider-next {
+      right: 0;
+    }
+
+    .work-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    /* ========================================
+       SECTION 3: SERVICES (circular like v2)
+       ======================================== */
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .service-card {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      background: rgba(0, 255, 0, 0.02);
+      padding: 20px;
+    }
+
+    .service-card:hover {
+      border-color: var(--emerald);
+      background: rgba(0, 255, 0, 0.08);
+      transform: scale(1.05);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1);
+    }
+
+    .service-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--emerald);
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+
+    .service-category {
+      font-size: 9px;
+      color: var(--emerald);
+      letter-spacing: 2px;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* ========================================
+       SECTION 4: CLIENTS & PARTNERS (v2 - no testimonial)
+       ======================================== */
+    .clients-section {
+      padding: 120px 0;
+      overflow: hidden;
+    }
+
+    .logo-slider {
+      overflow: hidden;
+      border-top: 1px solid var(--gray-dark);
+      border-bottom: 1px solid var(--gray-dark);
+      padding: 32px 0;
+    }
+
+    .logo-track {
+      display: flex;
+      gap: 80px;
+      width: max-content;
+      animation: scroll 20s linear infinite;
+    }
+
+    .logo-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 4px;
+      color: var(--gray-mid);
+      white-space: nowrap;
+      transition: color 0.3s ease;
+    }
+
+    .logo-item:hover {
+      color: var(--emerald);
+    }
+
+    .clients-cta {
+      text-align: center;
+      margin-top: 64px;
+      padding: 0 48px;
+    }
+
+    /* ========================================
+       SECTION 5: LATEST INSIGHTS (no images)
+       ======================================== */
+    .insights-slider {
+      position: relative;
+      padding: 0 60px;
+    }
+
+    .insight-slide {
+      padding: 0 12px;
+    }
+
+    .news-card {
+      border: 1px solid #222;
+      padding: 32px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 280px;
+    }
+
+    .news-card:hover {
+      border-color: var(--emerald);
+      background: rgba(0, 255, 0, 0.02);
+    }
+
+    .news-category-inline {
+      display: inline-block;
+      padding: 8px 14px;
+      background: var(--emerald);
+      color: var(--black);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 20px;
+      align-self: flex-start;
+    }
+
+    .news-date {
+      font-size: 12px;
+      color: var(--emerald);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .news-title {
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .news-card:hover .news-title {
+      color: var(--emerald);
+    }
+
+    .news-excerpt {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* Insights slider nav */
+    .insights-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .insights-nav:hover {
+      background: var(--emerald);
+    }
+
+    .insights-nav:hover svg {
+      color: var(--black);
+    }
+
+    .insights-nav svg {
+      width: 20px;
+      height: 20px;
+      color: var(--white);
+      transition: color 0.3s ease;
+    }
+
+    .insights-prev {
+      left: 0;
+    }
+
+    .insights-next {
+      right: 0;
+    }
+
+    /* ========================================
+       SECTION 6: WHY WORK WITH US (from index.html)
+       ======================================== */
+    .why-section {
+      background: var(--emerald);
+      color: var(--black);
+      padding: 100px 48px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .why-title {
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 0.9;
+      letter-spacing: -2px;
+      margin-bottom: 32px;
+    }
+
+    .why-quote {
+      font-size: 18px;
+      line-height: 1.7;
+      border-left: 3px solid var(--black);
+      padding-left: 32px;
+      margin-bottom: 32px;
+    }
+
+    .why-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .why-author-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--black);
+    }
+
+    .why-author-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .why-author-role {
+      font-size: 12px;
+      opacity: 0.7;
+      letter-spacing: 1px;
+    }
+
+    /* ========================================
+       SECTION 7: FOOTER (from index.html)
+       ======================================== */
+    .footer {
+      padding: 80px 48px 32px;
+      background: var(--black);
+      border-top: 1px solid var(--gray-dark);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-bottom: 64px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-logo-img {
+      height: 48px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: var(--black);
+    }
+
+    .footer-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      color: var(--gray-muted);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--emerald);
+    }
+
+    .footer-links svg {
+      width: 14px;
+      height: 14px;
+      color: var(--emerald);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: transparent;
+      border: 1px solid #333;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--emerald);
+    }
+
+    .newsletter-input::placeholder {
+      color: #555;
+    }
+
+    .newsletter-btn {
+      background: var(--emerald);
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--black);
+      transition: opacity 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      opacity: 0.8;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-dark);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--gray-muted);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal-link {
+      font-size: 13px;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .footer-legal-link:hover {
+      color: var(--emerald);
+    }
+
+    /* ========================================
+       RESPONSIVE STYLES
+       ======================================== */
+    @media (max-width: 1024px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 80px 24px;
+      }
+
+      .hero-title {
+        font-size: clamp(40px, 15vw, 80px);
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .why-section {
+        padding: 80px 24px;
+      }
+
+      .footer {
+        padding: 60px 24px 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .clients-section {
+        padding: 80px 0;
+      }
+
+      .slider-nav {
+        width: 40px;
+        height: 40px;
+      }
+
+      .slider-nav svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Slick overrides */
+    .slick-slide {
+      outline: none;
+    }
+
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="atc-logo-white.png" alt="Around the Clock" class="nav-logo-img">
+    </div>
+    <div class="nav-links">
+      <a class="nav-link">WORK</a>
+      <a class="nav-link">SERVICES</a>
+      <a class="nav-link">INSIGHTS</a>
+      <a class="nav-link">CAREERS</a>
+      <button class="cta-btn cta-btn-sm">GET IN TOUCH</button>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <p class="hero-tagline fade-in fade-in-1">INTEGRATED COMMUNICATIONS • UAE</p>
+      <h1 class="hero-title fade-in fade-in-2">AROUND<br>THE CLOCK</h1>
+      <p class="hero-subtitle fade-in fade-in-3">
+        Where strategy meets execution. Where data drives creativity.
+        Where brands become unforgettable.
+      </p>
+      <button class="cta-btn fade-in fade-in-4">GET IN TOUCH</button>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Highlighted Work -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <h2 class="section-title">HIGHLIGHTED WORK</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">Discover our most impactful projects that showcase our expertise across industries</p>
+      </div>
+      
+      <div class="highlighted-work-slider">
+        <button class="slider-nav slider-prev" onclick="$('.work-carousel').slick('slickPrev')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <div class="work-carousel">
+          <div class="project-slide">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600" alt="Content Creation">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Content</span>
+                <h3 class="project-title">CONTENT CREATION</h3>
+                <span class="project-client">Creative Studio</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-slide">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="Digital Transformation">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Technology</span>
+                <h3 class="project-title">DIGITAL TRANSFORMATION</h3>
+                <span class="project-client">Tech Corp</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-slide">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="Brand Revolution">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Branding</span>
+                <h3 class="project-title">BRAND REVOLUTION</h3>
+                <span class="project-client">Luxury Brand</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-slide">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600" alt="Creative Campaign">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Marketing</span>
+                <h3 class="project-title">CREATIVE CAMPAIGN</h3>
+                <span class="project-client">Global Enterprise</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-slide">
+            <div class="project-circle-wrapper">
+              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600" alt="Media Strategy">
+              <div class="project-overlay"></div>
+              <div class="project-info">
+                <span class="project-category">Media</span>
+                <h3 class="project-title">MEDIA STRATEGY</h3>
+                <span class="project-client">Enterprise Solutions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="slider-nav slider-next" onclick="$('.work-carousel').slick('slickNext')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="work-cta">
+        <button class="cta-btn">SEE OUR WORK</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 3: Services & Products -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <p class="section-label">03 — CAPABILITIES</p>
+        <h2 class="section-title">SERVICES & PRODUCTS</h2>
+      </div>
+      
+      <div class="services-grid" id="services-grid">
+        <!-- Services will be shuffled and injected by JavaScript -->
+      </div>
+      
+      <div class="text-center">
+        <button class="cta-btn">KNOW MORE</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 4: Clients & Partners -->
+  <section class="clients-section">
+    <div class="container" style="padding: 0 48px;">
+      <div class="section-header-center">
+        <p class="section-label">04 — TRUSTED BY</p>
+        <h2 class="section-title">CLIENTS & PARTNERS</h2>
+      </div>
+    </div>
+    
+    <div class="logo-slider">
+      <div class="logo-track">
+        <span class="logo-item">MARRIOTT</span>
+        <span class="logo-item">JUMEIRAH</span>
+        <span class="logo-item">EMAAR</span>
+        <span class="logo-item">ADNOC</span>
+        <span class="logo-item">ETIHAD</span>
+        <span class="logo-item">ALDAR</span>
+        <span class="logo-item">DEWA</span>
+        <span class="logo-item">MUBADALA</span>
+        <span class="logo-item">MARRIOTT</span>
+        <span class="logo-item">JUMEIRAH</span>
+        <span class="logo-item">EMAAR</span>
+        <span class="logo-item">ADNOC</span>
+        <span class="logo-item">ETIHAD</span>
+        <span class="logo-item">ALDAR</span>
+        <span class="logo-item">DEWA</span>
+        <span class="logo-item">MUBADALA</span>
+      </div>
+    </div>
+
+    <div class="clients-cta">
+      <button class="cta-btn">PARTNER WITH US</button>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 5: Latest Insights -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <h2 class="section-title">LATEST INSIGHTS</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">Stay updated with our latest thoughts, insights, and industry leadership</p>
+      </div>
+      
+      <div class="insights-slider">
+        <button class="insights-nav insights-prev" onclick="$('.insights-carousel').slick('slickPrev')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div class="insights-carousel">
+          <div class="insight-slide">
+            <article class="news-card">
+              <span class="news-category-inline">Thought Leadership</span>
+              <p class="news-date">January 10, 2026</p>
+              <h3 class="news-title">THE FUTURE OF INTEGRATED COMMUNICATIONS IN THE MIDDLE EAST</h3>
+              <p class="news-excerpt">Exploring how technology and creativity converge to shape the next generation of brand experiences.</p>
+            </article>
+          </div>
+          
+          <div class="insight-slide">
+            <article class="news-card">
+              <span class="news-category-inline">Industry Insights</span>
+              <p class="news-date">January 8, 2026</p>
+              <h3 class="news-title">DATA-DRIVEN CREATIVITY: THE NEW STANDARD</h3>
+              <p class="news-excerpt">How agencies are leveraging data analytics to fuel creative innovation and measurable results.</p>
+            </article>
+          </div>
+          
+          <div class="insight-slide">
+            <article class="news-card">
+              <span class="news-category-inline">Agency News</span>
+              <p class="news-date">January 5, 2026</p>
+              <h3 class="news-title">ATC EXPANDS REGIONAL PRESENCE WITH NEW OFFICE</h3>
+              <p class="news-excerpt">Our commitment to growth continues with strategic expansion across key Middle Eastern markets.</p>
+            </article>
+          </div>
+          
+          <div class="insight-slide">
+            <article class="news-card">
+              <span class="news-category-inline">Case Study</span>
+              <p class="news-date">December 28, 2025</p>
+              <h3 class="news-title">BREAKING RECORDS: OUR LATEST CAMPAIGN SUCCESS</h3>
+              <p class="news-excerpt">A deep dive into the strategy behind our award-winning digital transformation campaign.</p>
+            </article>
+          </div>
+        </div>
+
+        <button class="insights-nav insights-next" onclick="$('.insights-carousel').slick('slickNext')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="text-center" style="margin-top: 48px;">
+        <button class="cta-btn">CHECK IT OUT</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 6: Why Work With Us -->
+  <section class="why-section">
+    <div class="why-grid">
+      <div>
+        <h2 class="why-title">Tireless.<br>Committed.<br>Beyond<br>Passionate.</h2>
+        <button class="cta-btn-black">LET'S CHAT</button>
+      </div>
+      <div>
+        <p class="why-quote">
+          "We don't just clock in and out. We are obsessed with results. Our team operates with a relentless drive to push boundaries and deliver excellence around the clock."
+        </p>
+        <div class="why-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="CEO" class="why-author-img">
+          <div>
+            <p class="why-author-name">ALEX MERCER</p>
+            <p class="why-author-role">FOUNDER & CEO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <!-- Column 1: Logo -->
+      <div>
+        <img src="atc-logo-white.png" alt="Around the Clock" class="footer-logo-img">
+        <p class="footer-desc">Integrated strategies for the modern digital landscape.</p>
+        <div class="footer-social">
+          <a href="#">IG</a>
+          <a href="#">LN</a>
+          <a href="#">TW</a>
+          <a href="#">YT</a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h4 class="footer-heading">QUICK LINKS</h4>
+        <ul class="footer-links">
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Offices -->
+      <div>
+        <h4 class="footer-heading">OFFICES</h4>
+        <ul class="footer-links" id="offices-list">
+          <li><a href="#"><i data-lucide="globe"></i> Abu Dhabi</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Dubai</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Egypt</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> Lebanon</a></li>
+          <li><a href="#"><i data-lucide="globe"></i> London</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 4: Newsletter -->
+      <div>
+        <h4 class="footer-heading">STAY AHEAD OF THE CLOCK</h4>
+        <p class="footer-desc">Subscribe to our newsletter for industry insights.</p>
+        <div class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Around the Clock. All Rights Reserved.</p>
+      <div class="footer-legal">
+        <span class="footer-legal-link">Privacy Policy</span>
+        <span class="footer-legal-link">Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Services data with icons (will be shuffled on page load)
+    const services = [
+      { name: 'Media', icon: 'radio' },
+      { name: 'Creative', icon: 'palette' },
+      { name: 'Content', icon: 'video' },
+      { name: 'Creators', icon: 'users' },
+      { name: 'PR', icon: 'megaphone' },
+      { name: 'Events', icon: 'calendar' },
+      { name: 'Data/Tech', icon: 'bar-chart-3' }
+    ];
+
+    // Fisher-Yates shuffle algorithm
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Render shuffled services
+    function renderServices() {
+      const shuffledServices = shuffleArray(services);
+      const grid = document.getElementById('services-grid');
+      
+      grid.innerHTML = shuffledServices.map(service => `
+        <div class="service-card">
+          <i data-lucide="${service.icon}" class="service-icon"></i>
+          <span class="service-name">${service.name}</span>
+        </div>
+      `).join('');
+      
+      // Re-initialize Lucide icons for the new elements
+      lucide.createIcons();
+    }
+
+    // Initialize services on page load
+    renderServices();
+
+    // Initialize Slick Carousels
+    $(document).ready(function() {
+      // Work carousel
+      $('.work-carousel').slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '0',
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+
+      // Insights carousel
+      $('.insights-carousel').slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    });
+  </script>
+
+</body>
+</html>
