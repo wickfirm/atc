@@ -91,10 +91,10 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 24px 48px;
+      padding: 12px 48px 0;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
     }
 
@@ -1351,6 +1351,7 @@
       padding: 4px;
       z-index: 1100;
       position: relative;
+      margin-top: 10px;
     }
     .nav-hamburger span {
       display: block;
@@ -1384,8 +1385,8 @@
       pointer-events: all;
     }
     .mobile-menu-inner {
-      /* padding-top pushes links below the nav bar (logo 146px + 2×24px padding = 194px) */
-      padding: 200px 48px 48px;
+      /* padding-top pushes links below the nav bar (logo 146px + 12px top padding ≈ 158px) */
+      padding: 168px 48px 48px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
