@@ -2621,35 +2621,38 @@
 
   <script>
     /* ── Office data ────────────────────────────────────────── */
+    const phoneIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>`;
+    const pinIcon   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
     const officeData = {
       dubai: {
         name: 'DUBAI',
         details: [
-          { icon: '📞', text: '+971 4 425 0355' },
-          { icon: '📍', text: 'Gateway Building, Block B, Fourth Floor, Office B401, Dubai Media City, P.O. Box 501918, Dubai, UAE' }
+          { icon: phoneIcon, text: '+971 4 425 0355' },
+          { icon: pinIcon,   text: 'Gateway Building, Block B, Fourth Floor, Office B401, Dubai Media City, P.O. Box 501918, Dubai, UAE' }
         ]
       },
       abudhabi: {
         name: 'ABU DHABI',
         details: [
-          { icon: '📞', text: '+971 2 643 8256' },
-          { icon: '📍', text: 'Incubator Building, First Floor, Office 110A, Masdar City, P.O. Box 2282, Abu Dhabi, UAE' }
+          { icon: phoneIcon, text: '+971 2 643 8256' },
+          { icon: pinIcon,   text: 'Incubator Building, First Floor, Office 110A, Masdar City, P.O. Box 2282, Abu Dhabi, UAE' }
         ]
       },
       lebanon: {
         name: 'LEBANON',
         details: [
-          { icon: '📞', text: '+961 4 710 616' },
-          { icon: '📍', text: 'Mallah Yammine Center, Third Floor, Jal el Dib, Lebanon' }
+          { icon: phoneIcon, text: '+961 4 710 616' },
+          { icon: pinIcon,   text: 'Mallah Yammine Center, Third Floor, Jal el Dib, Lebanon' }
         ]
       },
       london: {
         name: 'LONDON',
-        details: [{ icon: '📍', text: 'Coming soon.' }]
+        details: [{ icon: pinIcon, text: 'Coming soon.' }]
       },
       egypt: {
         name: 'EGYPT',
-        details: [{ icon: '📍', text: 'Coming soon.' }]
+        details: [{ icon: pinIcon, text: 'Coming soon.' }]
       }
     };
 
