@@ -103,25 +103,6 @@
       width: auto;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .nav-link {
-      color: var(--white);
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover {
-      color: var(--emerald);
-    }
-
     /* Buttons */
     .cta-btn {
       background: transparent;
@@ -1358,7 +1339,7 @@
     }
     /* ── Hamburger button ─────────────────────────────────── */
     .nav-hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
@@ -1403,8 +1384,8 @@
       pointer-events: all;
     }
     .mobile-menu-inner {
-      /* padding-top pushes links below the nav bar (logo 72px + 2×20px padding = 112px) */
-      padding: 120px 48px 48px;
+      /* padding-top pushes links below the nav bar (logo 146px + 2×24px padding = 194px) */
+      padding: 200px 48px 48px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -1460,14 +1441,6 @@
     .mobile-menu.is-open .mobile-menu-cta {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    /* ── Hamburger shows at ≤1280px (13" laptops + smaller) ── */
-    @media (max-width: 1280px) {
-      .nav-hamburger { display: flex; }
-      .nav-links { display: none; }
-      .nav-logo-img { height: 72px; }
-      .nav { padding: 20px 32px; }
     }
 
     /* ── On true mobile (≤480px): full-screen centered overlay ── */
@@ -1586,14 +1559,6 @@
   <nav class="nav">
     <div class="nav-logo">
       <a href="/"><img src="files/Fw_ ATC Website - Logo & Icons/ATC-Logo.png" alt="Around the Clock" class="nav-logo-img"></a>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link" href="/#services">WHAT WE DO</a>
-      <a class="nav-link" href="/#clients">OUR CLIENTS</a>
-      <a class="nav-link" href="/#insights">INSIGHTS</a>
-      <a class="nav-link" href="/#why">OUR EDGE</a>
-      <a class="nav-link" href="/#contact">CONTACT</a>
-      <button class="cta-btn cta-btn-sm js-contact-open">LET'S TALK</button>
     </div>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
