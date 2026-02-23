@@ -556,7 +556,7 @@
       line-height: 1.7;
       font-weight: 300;
       list-style: none;
-      padding: 36px 24px 36px;
+      padding: 36px 24px 80px;
       margin: 0;
       position: absolute;
       top: 0;
@@ -568,6 +568,8 @@
       transform: translateY(10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
       overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
 
     .division-services li {
@@ -675,8 +677,8 @@
     }
 
     .logo-item img {
-      width: 140px;
-      height: 50px;
+      max-height: 70px;
+      width: auto;
       object-fit: contain;
     }
 
@@ -2108,10 +2110,11 @@
       <div>
         <h4 class="footer-heading">STAY AHEAD OF THE CLOCK</h4>
         <p class="footer-desc">Subscribe to our newsletter for industry insights.</p>
-        <div class="newsletter-form">
-          <input type="email" class="newsletter-input" placeholder="Enter your email">
-          <button class="newsletter-btn">→</button>
-        </div>
+        <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+          <input type="email" id="newsletter-input" class="newsletter-input" placeholder="Enter your email" autocomplete="email">
+          <button type="submit" class="newsletter-btn" id="newsletter-btn">→</button>
+        </form>
+        <p id="newsletter-msg" style="font-size:12px;margin-top:10px;min-height:16px;color:var(--emerald);letter-spacing:1px;"></p>
       </div>
     </div>
 
@@ -2605,7 +2608,7 @@
     <div class="modal-box">
       <button class="modal-close" id="contact-modal-close" aria-label="Close">✕</button>
       <p class="modal-label">GET IN TOUCH</p>
-      <h2 class="modal-title">LET'S TALK</h2>
+      <h2 class="modal-title">STAY AHEAD<br>OF THE CLOCK</h2>
       <form class="contact-form" id="contact-form" onsubmit="handleContactSubmit(event)">
         <div class="contact-form-row">
           <input type="text" name="name" placeholder="Your Name" required>
@@ -2700,6 +2703,31 @@
       btn.style.border = '1px solid var(--emerald)';
       setTimeout(() => closeModal('contact-modal'), 1800);
       e.target.reset();
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const input = document.getElementById('newsletter-input');
+      const msg   = document.getElementById('newsletter-msg');
+      const btn   = document.getElementById('newsletter-btn');
+      const email = input.value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!valid) {
+        msg.style.color = '#ff4444';
+        msg.textContent = 'Please enter a valid email address.';
+        input.style.borderColor = '#ff4444';
+        return;
+      }
+      input.style.borderColor = 'var(--emerald)';
+      btn.textContent = '✓';
+      msg.style.color = 'var(--emerald)';
+      msg.textContent = 'You\'re in! Welcome to the clock.';
+      input.value = '';
+      setTimeout(() => {
+        btn.textContent = '→';
+        msg.textContent = '';
+        input.style.borderColor = '#333';
+      }, 4000);
     }
   </script>
 
