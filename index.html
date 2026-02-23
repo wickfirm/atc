@@ -481,7 +481,7 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      min-height: 480px;
+      min-height: 560px;
       transition: border-color 0.35s ease, background 0.35s ease;
       background: rgba(255,255,255,0.01);
     }
@@ -553,10 +553,10 @@
     /* services list overlays on top, filling the whole body area */
     .division-services {
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.6;
       font-weight: 300;
       list-style: none;
-      padding: 36px 24px 80px;
+      padding: 8px 0 8px;
       margin: 0;
       position: absolute;
       top: 0;
@@ -567,13 +567,10 @@
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
 
     .division-services li {
-      padding: 5px 0;
+      padding: 4px 0;
       border-bottom: 1px solid rgba(255,255,255,0.07);
       font-size: 11.5px;
       letter-spacing: 0.2px;
@@ -616,7 +613,7 @@
 
     @media (max-width: 700px) {
       .divisions-grid { grid-template-columns: repeat(2, 1fr); }
-      .division-card { min-height: 320px; padding: 28px 20px 24px; }
+      .division-card { min-height: 420px; padding: 28px 20px 24px; }
     }
 
     /* ========================================
@@ -1119,7 +1116,7 @@
 
     @media (max-width: 480px) {
       .divisions-grid { grid-template-columns: 1fr !important; }
-      .division-card { min-height: auto; }
+      .division-card { min-height: 480px; }
     }
 
     /* Slick overrides */
